@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
-import logo from '../logo.png';
+import Nav from './Nav';
+import PostList from './PostList';
 
 class App extends Component {
   render() {
     return (
-      <div className="container">
-        Hello World!
+      <div>
+        <Nav />
+        <div className="container">
+          <div className="row">
+            <PostList/>
+          </div>
+        </div>
       </div>
     );
   }
