@@ -2,10 +2,10 @@ import React from 'react';
 import PostList from './PostList';
 import Nav from './Nav';
 
-export default function DefaultPage() {
+export default function DefaultPage(props) {
   return (
     <div>
-      <Nav />
+      <Nav categories={props.categories} />
       <PostList />
     </div>
   );
