@@ -5,7 +5,7 @@ import Nav from './Nav';
 export default function DefaultPage(props) {
   return (
     <div>
-      <Nav categories={props.categories} />
+      <Nav />
       <PostList />
     </div>
   );

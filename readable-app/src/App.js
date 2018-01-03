@@ -4,25 +4,10 @@ import * as API from './util/API';
 
 class App extends Component {
 
-  state = {
-    categories : []
-  };
-
-  componentDidMount(){
-    API
-      .getCategories()
-      .then(result => {
-        this.setState({
-          categories : result
-        })
-      })
-  }
-
-
   render() {
     return (
       <div>
-        <DefaultPage categories={this.state.categories} />
+        <DefaultPage />
       </div>
     );
   }
