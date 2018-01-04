@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { fetchCategories } from '../actions/categories';
 
 class Nav extends Component {
-
   /**
    * fetch categories
    */
@@ -12,6 +11,7 @@ class Nav extends Component {
   }
 
   render() {
+    const { categories } = this.props;
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div className="container">
@@ -32,9 +32,9 @@ class Nav extends Component {
 
           <div className="collapse navbar-collapse" id="navbarsExample07">
             <ul className="navbar-nav mr-auto">
-              {this.props.categories.map(category => {
-                return (
-                  <li key={category.path} className="nav-item active">
+              {categories.map(category => {
+                 return (
+                  <li key={category.path} className="nav-item">
                     <a className="nav-link" href="#">
                       {category.name} <span className="sr-only">(current)</span>
                     </a>

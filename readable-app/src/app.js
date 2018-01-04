@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import DefaultPage from './components/DefaultPage';
+import HomePage from './components/pages/homepage/index.js';
 import * as API from './util/API';
 
 class App extends Component {
@@ -7,7 +7,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <DefaultPage />
+        <HomePage />
       </div>
     );
   }

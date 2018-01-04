@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/css/index.css';
-import App from './App';
+import App from './app';
 import registerServiceWorker from './registerServiceWorker';
 import { createStore, applyMiddleware, compose } from 'redux';
 import reducer from './reducers';
