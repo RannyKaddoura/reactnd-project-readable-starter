@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchCategories } from '../actions/categories';
+import { Link } from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 
 class Nav extends Component {
   /**
@@ -10,14 +12,22 @@ class Nav extends Component {
     this.props.fetchCategories();
   }
 
+  /**
+   * check if category has changes
+   */
+  componentDidUpdate (prevProps) {
+    console.log(prevProps);
+  }
+
   render() {
     const { categories } = this.props;
+
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div className="container">
-          <a className="navbar-brand" href="#">
+          <Link to='/' className="navbar-brand">
             All
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -34,10 +44,10 @@ class Nav extends Component {
             <ul className="navbar-nav mr-auto">
               {categories.map(category => {
                  return (
-                  <li key={category.path} className="nav-item">
-                    <a className="nav-link" href="#">
+                  <li key={category.path} className={"nav-item " + (this.props.match.category === category.path ? 'active' : '')}>
+                    <Link to={category.path} className="nav-link">
                       {category.name} <span className="sr-only">(current)</span>
-                    </a>
+                    </Link>
                   </li>
                 );
               })}
@@ -51,4 +61,4 @@ class Nav extends Component {
 
 const mapStateToProps = ({ categories }) => ({ categories });
 const mapDispatchToProps = { fetchCategories };
-export default connect(mapStateToProps, mapDispatchToProps)(Nav);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Nav));

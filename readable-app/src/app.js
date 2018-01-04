@@ -17,6 +17,7 @@ class App extends Component {
         <BrowserRouter>
           <Switch>
             <Route exact path="/" component={HomePage} />
+            <Route exact path="/:category" component={HomePage} />
           </Switch>
         </BrowserRouter>
       </Provider>
