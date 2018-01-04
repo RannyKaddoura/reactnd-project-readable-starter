@@ -16,14 +16,14 @@ class PostList extends React.Component {
     return (
       <div className="container">
 
-        <h1 class="display-4">Posts <span class="lead">All</span></h1>
-        <hr class="my-4" />
+        <h1 className="display-4">Posts <span className="lead">All</span></h1>
+        <hr className="my-4" />
 
         <div className="row">
           {posts.map(post => {
             return (
-              <div className="col-sm-6 col-md-4" style={{'margin-bottom': '1rem'}}>
-                <div key={post.id} className="card">
+              <div  key={post.id} className="col-sm-6 col-md-4" style={{marginBottom: '1rem'}}>
+                <div className="card">
                   <img
                     className="card-img-top"
                     src="http://via.placeholder.com/350x150"
