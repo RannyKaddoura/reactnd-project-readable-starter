@@ -1,4 +1,6 @@
 import React from 'react';
+import * as uuid from 'uuid/v4';
+import moment from 'moment';
 
 class CommentForm extends React.Component {
   state = {
@@ -13,7 +15,15 @@ class CommentForm extends React.Component {
     if (this.validateForm()){
 
       //handle further submission
+      const comment = {
+        id: uuid(),
+        author: this.nameInput.value,
+        body: this.messageInput.value,
+        timestamp: moment().unix(),
+        parentId: this.props.post.id
+      }
 
+      //fire up action to add a comment
     }
   }
 
@@ -34,7 +44,7 @@ class CommentForm extends React.Component {
   }
 
   render() {
-    console.log(this.state)
+
     return (
       <div>
         <form onSubmit={e => this.onSubmit(e)}>
