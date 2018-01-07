@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import HomePage from './components/pages/homepage/index.js';
+import HomePage from './components/pages/homepage/index';
+import Post from './components/pages/post/index';
 import { createStore, applyMiddleware, compose } from 'redux';
 import reducer from './reducers';
 import thunk from 'redux-thunk';
@@ -18,6 +19,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route exact path="/:category" component={HomePage} />
+            <Route exact path="/:category/:post" component={Post} />
           </Switch>
         </BrowserRouter>
       </Provider>
