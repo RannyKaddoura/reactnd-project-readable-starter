@@ -1,13 +1,32 @@
 import React from 'react';
-import { fetchPosts } from '../actions/posts';
 import { connect } from 'react-redux';
+import { fetchPostsByCategory, fetchPosts } from '../actions/posts';
+import {withRouter} from 'react-router-dom';
 
 class PostList extends React.Component {
   /**
    * fetch Posts
    */
   componentDidMount() {
-    this.props.dispatch(fetchPosts());
+    this.props.fetchPosts();
+  }
+
+  /**
+   * check if category has changes
+   */
+  componentDidUpdate (prevProps) {
+
+    const category = this.props.match.params.category;
+
+    if (prevProps.match.params.category !== category)
+    {
+      console.log(category, category === undefined)
+      if  (category === undefined){
+        this.props.fetchPosts();
+      }else{
+        this.props.fetchPostsByCategory(this.props.match.params.category);
+      }
+    }
   }
 
   render() {
@@ -49,4 +68,5 @@ class PostList extends React.Component {
 }
 
 const mapStateToProps = ({ posts }) => ({ posts });
-export default connect(mapStateToProps)(PostList);
+const mapDispatchToProps = { fetchPostsByCategory, fetchPosts };
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostList));

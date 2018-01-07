@@ -24,3 +24,13 @@ export const fetchAllCategories = () =>
 export const fetchAllPosts = () =>
   fetch(`${api}/posts`, { headers })
     .then(res => res.json());
+
+/**
+ * fetch posts of a certain category
+ *
+ * @param category
+ * @returns {Promise<any>}
+ */
+export const fetchPostsByCategory = (category) =>
+  fetch(`${api}/${category}/posts`, { headers })
+    .then(res => res.json());

@@ -12,13 +12,6 @@ class Nav extends Component {
     this.props.fetchCategories();
   }
 
-  /**
-   * check if category has changes
-   */
-  componentDidUpdate (prevProps) {
-    console.log(prevProps);
-  }
-
   render() {
     const { categories } = this.props;
 
