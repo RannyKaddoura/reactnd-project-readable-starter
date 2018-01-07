@@ -38,7 +38,7 @@ class Nav extends Component {
               {categories.map(category => {
                  return (
                   <li key={category.path} className={"nav-item " + (this.props.match.category === category.path ? 'active' : '')}>
-                    <Link to={category.path} className="nav-link">
+                    <Link to={`/${category.path}`} className="nav-link">
                       {category.name} <span className="sr-only">(current)</span>
                     </Link>
                   </li>
