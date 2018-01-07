@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchPostsByCategory, fetchPosts } from '../actions/posts';
 import { withRouter } from 'react-router-dom';
+import { fetchPostsByCategory, fetchPosts } from '../actions/posts';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 
@@ -25,16 +25,14 @@ class PostList extends React.Component {
     }
   }
 
-  doFetchCategories(){
+  doFetchCategories() {
+    const { category } = this.props.match.params;
 
-    const {category} = this.props.match.params;
-
-    if(category !== undefined){
+    if (category !== undefined) {
       this.props.fetchPostsByCategory(category);
-    }else{
+    } else {
       this.props.fetchPosts();
     }
-
   }
 
   render() {
@@ -44,7 +42,10 @@ class PostList extends React.Component {
     return (
       <div className="container">
         <h1 className="display-4">
-          Posts <span className="lead">{ category === undefined ? 'all' : category }</span>
+          Posts{' '}
+          <span className="lead">
+            {category === undefined ? 'all' : category}
+          </span>
         </h1>
         <hr className="my-4" />
 
@@ -68,7 +69,8 @@ class PostList extends React.Component {
                           .format('MMM Do YYYY, h:mm:ss a')}
                       </div>
                       <div className="author">
-                        <i className="fa fa-user-circle-o" aria-hidden="true" /> {post.author}
+                        <i className="fa fa-user-circle-o" aria-hidden="true" />{' '}
+                        {post.author}
                       </div>
                     </small>
 
@@ -78,7 +80,10 @@ class PostList extends React.Component {
 
                     <hr className="my-2" />
                     <div className="card-controls">
-                      <Link to={`/${post.category}/${post.id}`} className="btn btn-info btn-sm float-right">
+                      <Link
+                        to={`/${post.category}/${post.id}`}
+                        className="btn btn-info btn-sm float-right"
+                      >
                         Read more
                       </Link>
                     </div>
@@ -87,13 +92,22 @@ class PostList extends React.Component {
 
                     <small className="footer text-muted">
                       <div className="votes float-right">
-                        <i className={"fa "  + (post.voteScore < 0 ? 'fa-thumbs-o-down' : 'fa-thumbs-o-up') }  aria-hidden="true"></i> { post.voteScore }
+                        <i
+                          className={
+                            'fa ' +
+                            (post.voteScore < 0
+                              ? 'fa-thumbs-o-down'
+                              : 'fa-thumbs-o-up')
+                          }
+                          aria-hidden="true"
+                        />{' '}
+                        {post.voteScore}
                       </div>
                       <div className="category">
-                        <i className="fa fa-tag" aria-hidden="true"></i> { post.category }
+                        <i className="fa fa-tag" aria-hidden="true" />{' '}
+                        {post.category}
                       </div>
                     </small>
-
                   </div>
                 </div>
               </div>

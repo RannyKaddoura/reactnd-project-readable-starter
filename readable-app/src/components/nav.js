@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchCategories } from '../actions/categories';
 import { Link } from 'react-router-dom';
-import {withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 class Nav extends Component {
   /**
@@ -19,7 +19,7 @@ class Nav extends Component {
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div className="container">
-          <Link to='/' className="navbar-brand">
+          <Link to="/" className="navbar-brand">
             All
           </Link>
           <button
@@ -37,8 +37,14 @@ class Nav extends Component {
           <div className="collapse navbar-collapse" id="navbarsExample07">
             <ul className="navbar-nav mr-auto">
               {categories.map(category => {
-                 return (
-                  <li key={category.path} className={"nav-item " + (currentCategory === category.name ? 'active' : '')}>
+                return (
+                  <li
+                    key={category.path}
+                    className={
+                      'nav-item ' +
+                      (currentCategory === category.name ? 'active' : '')
+                    }
+                  >
                     <Link to={`/${category.path}`} className="nav-link">
                       {category.name} <span className="sr-only">(current)</span>
                     </Link>

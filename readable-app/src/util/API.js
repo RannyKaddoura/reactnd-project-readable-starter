@@ -34,3 +34,23 @@ export const fetchAllPosts = () =>
 export const fetchPostsByCategory = (category) =>
   fetch(`${api}/${category}/posts`, { headers })
     .then(res => res.json());
+
+/**
+ * fetch post details
+ *
+ * @param id
+ * @returns {Promise<any>}
+ */
+export const fetchPost = (id) =>
+  fetch(`${api}/posts/${id}`, { headers })
+    .then(res => res.json())
+
+/**
+ * fetch comments
+ *
+ * @param postId
+ * @returns {Promise<any>}
+ */
+export const fetchComments = (postId) =>
+  fetch(`${api}/posts/${postId}/comments`, { headers })
+    .then(res => res.json());
