@@ -1,12 +1,22 @@
 import React from 'react';
 import * as uuid from 'uuid/v4';
 import moment from 'moment';
+import { connect } from 'react-redux';
+import { doAddComment } from '../../../../actions/comments';
 
 class CommentForm extends React.Component {
   state = {
     nameIsNotEmpty: true,
     messageIsNotEmpty: true
   };
+
+  /**
+   * clear form inputs
+   */
+  clearForm(){
+    this.nameInput.value = '';
+    this.messageInput.value = '';
+  }
 
   onSubmit(event) {
     event.preventDefault();
@@ -24,6 +34,8 @@ class CommentForm extends React.Component {
       }
 
       //fire up action to add a comment
+      this.props.dispatch(doAddComment(comment));
+      this.clearForm();
     }
   }
 
@@ -83,4 +95,4 @@ class CommentForm extends React.Component {
   }
 }
 
-export default CommentForm;
+export default connect()(CommentForm);
