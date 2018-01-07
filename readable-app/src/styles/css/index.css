@@ -1,2 +1,7 @@
 body {
   padding-top: 5rem; }
+
+.card-deck .card {
+  height: 100%; }
+  .card-deck .card .card-text {
+    min-height: 10rem; }
