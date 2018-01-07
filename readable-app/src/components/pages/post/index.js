@@ -1,6 +1,6 @@
 import React from 'react';
 import Nav from '../../nav';
-import PostDetails from './details';
+import PostDetails from './components/details';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { fetchPost } from '../../../actions/post';

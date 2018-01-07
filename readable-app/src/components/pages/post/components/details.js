@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import CommentForm from './comment-form';
 
 export default function PostDetails(props) {
   const {post, comments} = props;
@@ -24,6 +25,8 @@ export default function PostDetails(props) {
                 ))}
               </div>
             }
+
+            <CommentForm/>
           </div>
         </div>
 

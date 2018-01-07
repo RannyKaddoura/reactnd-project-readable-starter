@@ -1,5 +1,5 @@
 import React from 'react';
-import PostList from '../../posts';
+import PostList from './components/posts';
 import Nav from '../../nav';
 
 export default function HomePage(props) {
