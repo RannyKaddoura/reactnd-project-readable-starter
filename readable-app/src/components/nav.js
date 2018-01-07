@@ -14,6 +14,7 @@ class Nav extends Component {
 
   render() {
     const { categories } = this.props;
+    const currentCategory = this.props.match.params.category;
 
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -37,7 +38,7 @@ class Nav extends Component {
             <ul className="navbar-nav mr-auto">
               {categories.map(category => {
                  return (
-                  <li key={category.path} className={"nav-item " + (this.props.match.category === category.path ? 'active' : '')}>
+                  <li key={category.path} className={"nav-item " + (currentCategory === category.name ? 'active' : '')}>
                     <Link to={`/${category.path}`} className="nav-link">
                       {category.name} <span className="sr-only">(current)</span>
                     </Link>

@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 import { fetchPostsByCategory, fetchPosts } from '../actions/posts';
 import { withRouter } from 'react-router-dom';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 class PostList extends React.Component {
   /**
    * fetch Posts
    */
   componentDidMount() {
-    this.props.fetchPosts();
+    this.doFetchCategories();
   }
 
   /**
@@ -20,12 +21,20 @@ class PostList extends React.Component {
     const prevCategory = prevProps.match.params.category;
 
     if (prevCategory !== currentCategory) {
-      if (currentCategory === undefined) {
-        this.props.fetchPosts();
-      } else {
-        this.props.fetchPostsByCategory(this.props.match.params.category);
-      }
+      this.doFetchCategories();
     }
+  }
+
+  doFetchCategories(){
+
+    const {category} = this.props.match.params;
+
+    if(category !== undefined){
+      this.props.fetchPostsByCategory(category);
+    }else{
+      this.props.fetchPosts();
+    }
+
   }
 
   render() {
@@ -53,13 +62,13 @@ class PostList extends React.Component {
 
                     <small className="text-muted">
                       <div className="timestamp">
-                        <i class="fa fa-calendar" aria-hidden="true" />{' '}
+                        <i className="fa fa-calendar" aria-hidden="true" />
                         {moment
                           .unix(post.timestamp)
                           .format('MMM Do YYYY, h:mm:ss a')}
                       </div>
                       <div className="author">
-                        <i class="fa fa-user-circle-o" aria-hidden="true" /> {post.author}
+                        <i className="fa fa-user-circle-o" aria-hidden="true" /> {post.author}
                       </div>
                     </small>
 
@@ -69,19 +78,19 @@ class PostList extends React.Component {
 
                     <hr className="my-2" />
                     <div className="card-controls">
-                      <a href="#" className="btn btn-info btn-sm float-right">
+                      <Link to={`/${post.category}/${post.id}`} className="btn btn-info btn-sm float-right">
                         Read more
-                      </a>
+                      </Link>
                     </div>
                     <div className="clearfix" />
                     <hr className="my-2" />
 
                     <small className="footer text-muted">
                       <div className="votes float-right">
-                        <i class={"fa "  + (post.voteScore < 0 ? 'fa-thumbs-o-down' : 'fa-thumbs-o-up') }  aria-hidden="true"></i> { post.voteScore }
+                        <i className={"fa "  + (post.voteScore < 0 ? 'fa-thumbs-o-down' : 'fa-thumbs-o-up') }  aria-hidden="true"></i> { post.voteScore }
                       </div>
                       <div className="category">
-                        <i class="fa fa-tag" aria-hidden="true"></i> { post.category }
+                        <i className="fa fa-tag" aria-hidden="true"></i> { post.category }
                       </div>
                     </small>
 
