@@ -5,7 +5,7 @@ import { fetchPostsByCategory, fetchPosts } from '../../../../actions/posts';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 
-class PostList extends React.Component {
+class Posts extends React.Component {
   /**
    * fetch Posts
    */
@@ -122,5 +122,5 @@ class PostList extends React.Component {
 const mapStateToProps = ({ posts }) => ({ posts });
 const mapDispatchToProps = { fetchPostsByCategory, fetchPosts };
 export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(PostList)
+  connect(mapStateToProps, mapDispatchToProps)(Posts)
 );
