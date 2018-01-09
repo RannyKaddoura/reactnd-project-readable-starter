@@ -5,20 +5,18 @@ import { connect } from 'react-redux';
 import { doAddComment } from '../../../../actions/comments';
 
 class CommentForm extends React.Component {
+
   state = {
     nameIsNotEmpty: true,
     messageIsNotEmpty: true
   };
 
-  /**
-   * clear form inputs
-   */
   clearForm(){
     this.nameInput.value = '';
     this.messageInput.value = '';
   }
 
-  onSubmit(event) {
+  handleSubmit(event) {
     event.preventDefault();
 
     //validate form
@@ -59,7 +57,7 @@ class CommentForm extends React.Component {
 
     return (
       <div>
-        <form onSubmit={e => this.onSubmit(e)}>
+        <form onSubmit={e => this.handleSubmit(e)}>
           <div className="form-group">
             <label htmlFor="name">Name:</label>
             <input
@@ -94,5 +92,5 @@ class CommentForm extends React.Component {
     );
   }
 }
-
-export default connect()(CommentForm);
+const mapStateToProps = ({post}) => ({post});
+export default connect(mapStateToProps)(CommentForm);

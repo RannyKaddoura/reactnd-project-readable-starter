@@ -25,7 +25,7 @@ class Posts extends React.Component {
     }
   }
 
-  doFetchCategories() {
+  doFetchCategories = () => {
     const { category } = this.props.match.params;
 
     if (category !== undefined) {

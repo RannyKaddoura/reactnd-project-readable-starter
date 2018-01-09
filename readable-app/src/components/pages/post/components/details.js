@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import CommentForm from './comment-form';
+import Comment from './comment';
 
 export default function PostDetails(props) {
   const { post, comments } = props;
@@ -12,7 +13,7 @@ export default function PostDetails(props) {
             <h2>{post.title}</h2>
             <p className="blog-post-meta">
               {moment.unix(post.timestamp).format('MMM Do YYYY h:mm:ss a')} by
-              Mark
+              {post.author}
             </p>
             <div>{post.body}</div>
 
@@ -22,12 +23,16 @@ export default function PostDetails(props) {
               <div className="comments">
                 <h4>Comments</h4>
                 {comments.map(comment => (
-                  <div key={comment.id}>{comment.body}</div>
+                  <div key={comment.id}>
+                    <Comment comment={comment} />
+                    <hr className="my-1" />
+                  </div>
+
                 ))}
               </div>
             )}
 
-            <CommentForm post={post} />
+            <CommentForm />
           </div>
         </div>
       </div>
