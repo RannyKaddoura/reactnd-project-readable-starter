@@ -47,14 +47,14 @@ function post(state = {}, action) {
 function comments(state = [], action) {
   switch (action.type) {
     case GET_COMMENTS:
-      return action.comments.sort(sortBy('timestamp'));
+      return action.comments.sort(sortBy('-timestamp'));
     case ADD_COMMENT:
       const newState = state.concat([action.comment]);
-      return newState.sort(sortBy('timestamp'));
+      return newState.sort(sortBy('-timestamp'));
     case UPDATE_COMMENT:
       return state.map((comment) => {
         return comment.id === action.comment.id ? action.comment : comment;
-      });
+      }).sort(sortBy('-timestamp'));
     default:
       return state;
   }

@@ -25,7 +25,8 @@ class CommentForm extends React.Component {
           updateComment({
             ...this.props.comment,
             author: this.nameInput.value,
-            body: this.messageInput.value
+            body: this.messageInput.value,
+            timestamp: moment().unix()
           })
         );
         this.props.toggleEdit();
