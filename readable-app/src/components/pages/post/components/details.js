@@ -10,12 +10,15 @@ export default function PostDetails(props) {
       <div className="row">
         <div className="col-sm-8 blog-main">
           <div className="blog-post">
-            <h2>{post.title}</h2>
-            <p className="blog-post-meta">
-              {moment.unix(post.timestamp).format('MMM Do YYYY h:mm:ss a')} by
-              {post.author}
-            </p>
-            <div>{post.body}</div>
+
+            <div className="jumbotron">
+              <h2>{post.title}</h2>
+              <p className="blog-post-meta">
+                <strong>{post.author}</strong> {moment.unix(post.timestamp).format('MMM Do YYYY h:mm:ss a')}
+              </p>
+              <hr className="my-4" />
+              <p className="blockquote">{post.body}</p>
+            </div>
 
             <hr className="my-3" />
 

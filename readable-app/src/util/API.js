@@ -65,3 +65,16 @@ export const postComment = comment =>
     method: 'post',
     body: JSON.stringify(comment)
   }).then(response => response.json());
+
+/**
+ * post a comment
+ *
+ * @param comment
+ * @returns {Promise<any>}
+ */
+export const putComment = comment =>
+  fetch(`${api}/comments/${comment.id}`, {
+    headers,
+    method: 'put',
+    body: JSON.stringify(comment)
+  }).then(response => response.json());

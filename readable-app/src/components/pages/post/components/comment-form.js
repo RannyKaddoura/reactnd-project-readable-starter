@@ -1,17 +1,15 @@
 import React from 'react';
-import * as uuid from 'uuid/v4';
 import moment from 'moment';
 import { connect } from 'react-redux';
-import { doAddComment } from '../../../../actions/comments';
+import { createComment, updateComment } from '../../../../actions/comments';
 
 class CommentForm extends React.Component {
-
   state = {
     nameIsNotEmpty: true,
     messageIsNotEmpty: true
   };
 
-  clearForm(){
+  clearForm() {
     this.nameInput.value = '';
     this.messageInput.value = '';
   }
@@ -20,22 +18,36 @@ class CommentForm extends React.Component {
     event.preventDefault();
 
     //validate form
-    if (this.validateForm()){
-
-      //handle further submission
-      const comment = {
-        id: uuid(),
-        author: this.nameInput.value,
-        body: this.messageInput.value,
-        timestamp: moment().unix(),
-        parentId: this.props.post.id
-      }
-
+    if (this.validateForm()) {
       //fire up action to add a comment
-      this.props.dispatch(doAddComment(comment));
-      this.clearForm();
+      if (this.props.comment.id) {
+        this.props.dispatch(
+          updateComment({
+            ...this.props.comment,
+            author: this.nameInput.value,
+            body: this.messageInput.value
+          })
+        );
+        this.props.toggleEdit();
+      } else {
+        this.createComment();
+        this.clearForm();
+      }
     }
   }
+
+  /**
+   * create comment from form data
+   */
+  createComment = () => {
+    this.props.dispatch(
+      createComment({
+        author: this.nameInput.value,
+        body: this.messageInput.value,
+        parentId: this.props.post.id
+      })
+    );
+  };
 
   /**
    * simple form validation
@@ -54,13 +66,14 @@ class CommentForm extends React.Component {
   }
 
   render() {
-
+    const { comment } = this.props;
     return (
       <div>
         <form onSubmit={e => this.handleSubmit(e)}>
           <div className="form-group">
             <label htmlFor="name">Name:</label>
             <input
+              defaultValue={comment.author}
               ref={i => (this.nameInput = i)}
               type="text"
               className={
@@ -74,6 +87,7 @@ class CommentForm extends React.Component {
           <div className="form-group">
             <label htmlFor="message">Message:</label>
             <textarea
+              defaultValue={comment.body}
               ref={t => (this.messageInput = t)}
               className={
                 'form-control ' +
@@ -92,5 +106,8 @@ class CommentForm extends React.Component {
     );
   }
 }
-const mapStateToProps = ({post}) => ({post});
+CommentForm.defaultProps = {
+  comment: {}
+};
+const mapStateToProps = ({ post }) => ({ post });
 export default connect(mapStateToProps)(CommentForm);

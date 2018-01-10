@@ -3,14 +3,13 @@ import moment from 'moment';
 import CommentForm from './comment-form';
 
 class Comment extends Component {
-
   state = {
-    edit:false
+    edit: false
   };
 
   toggleEdit = () => {
-    this.setState(state => ({edit : !state.edit}));
-  }
+    this.setState(state => ({ edit: !state.edit }));
+  };
 
   render() {
     const { comment } = this.props;
@@ -27,32 +26,37 @@ class Comment extends Component {
         <i
           className={
             'fa ' +
-            (comment.voteScore < 0
-              ? 'fa-thumbs-o-down'
-              : 'fa-thumbs-o-up')
+            (comment.voteScore < 0 ? 'fa-thumbs-o-down' : 'fa-thumbs-o-up')
           }
           aria-hidden="true"
         />
         <div>{comment.body}</div>
         <ul className="list-inline">
           <li className="list-inline-item">
-            <a className='btn' onClick={() => this.toggleEdit()}><i className="fa fa-pencil-square-o" aria-hidden="true" /></a>
+            <a className="btn" onClick={() => this.toggleEdit()}>
+              <i className="fa fa-pencil-square-o" aria-hidden="true" />
+            </a>
           </li>
           <li className="list-inline-item">
-            <a className='btn'><i className="fa fa-times" aria-hidden="true" /></a>
+            <a className="btn">
+              <i className="fa fa-times" aria-hidden="true" />
+            </a>
           </li>
           <li className="list-inline-item">
-            <a className='btn'><i className="fa fa-thumbs-o-up" aria-hidden="true" /></a>
+            <a className="btn">
+              <i className="fa fa-thumbs-o-up" aria-hidden="true" />
+            </a>
           </li>
           <li className="list-inline-item">
-            <a className='btn'><i className="fa fa-thumbs-o-down" aria-hidden="true" /></a>
+            <a className="btn">
+              <i className="fa fa-thumbs-o-down" aria-hidden="true" />
+            </a>
           </li>
         </ul>
 
         {this.state.edit && (
-          <CommentForm name={comment.author} message={comment.body} />
+          <CommentForm comment={comment} toggleEdit={this.toggleEdit} />
         )}
-
       </div>
     );
   }
