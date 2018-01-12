@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import CommentForm from './comment-form';
+import { connect } from 'react-redux';
+import { voteComment } from '../../../../actions/comments';
 
 class Comment extends Component {
   state = {
@@ -10,6 +12,10 @@ class Comment extends Component {
   toggleEdit = () => {
     this.setState(state => ({ edit: !state.edit }));
   };
+
+  voteComment(option) {
+    this.props.dispatch(voteComment(this.props.comment, option));
+  }
 
   render() {
     const { comment } = this.props;
@@ -43,12 +49,18 @@ class Comment extends Component {
             </a>
           </li>
           <li className="list-inline-item">
-            <a className="btn">
+            <a
+              className="btn"
+              onClick={() => this.voteComment({ option: 'upVote' })}
+            >
               <i className="fa fa-thumbs-o-up" aria-hidden="true" />
             </a>
           </li>
           <li className="list-inline-item">
-            <a className="btn">
+            <a
+              className="btn"
+              onClick={() => this.voteComment({ option: 'downVote' })}
+            >
               <i className="fa fa-thumbs-o-down" aria-hidden="true" />
             </a>
           </li>
@@ -62,4 +74,4 @@ class Comment extends Component {
   }
 }
 
-export default Comment;
+export default connect()(Comment);

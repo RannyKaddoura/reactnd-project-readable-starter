@@ -25,8 +25,18 @@ export function createComment({ body, author, parentId }) {
     API.postComment(comment).then(result => dispatch(addComment(result)));
 }
 
-export function updateComment(comment){
-  return dispatch => API.putComment(comment).then(() => dispatch(doUpdateComment(comment)));
+export function updateComment(comment) {
+  return dispatch =>
+    API.putComment(comment).then(() => dispatch(doUpdateComment(comment)));
+}
+
+export function voteComment(comment, option) {
+  return dispatch =>
+    API.voteComment(comment, option).then((result) =>
+      {
+        dispatch(doUpdateComment(result))
+      }
+    );
 }
 
 function getComments(comments) {
