@@ -1,17 +1,18 @@
 import * as API from '../util/API';
 
-export const GET_POST = 'GET_POST';
+export const FETCH_POST = 'FETCH_POST';
 
-export function fetchPost(postId) {
+/**
+ * fetch comments on api
+ */
+export function doFetchPost(postId) {
   return dispatch =>
-    API.fetchPost(postId)
-      .then(post => dispatch(getPost(post)));
+    API.fetchPost(postId).then(post => dispatch(fetchPost(post)));
 }
 
-
-function getPost(post) {
+function fetchPost(post) {
   return {
-    type: GET_POST,
+    type: FETCH_POST,
     post: post
   };
 }

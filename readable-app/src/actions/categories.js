@@ -1,16 +1,20 @@
 import * as API from '../util/API';
 
-export const GET_CATEGORIES = 'GET_CATEGORIES';
+export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
 
-export function fetchCategories() {
+/**
+ * fetch categories on api
+ */
+export function doFetchCategories() {
   return dispatch =>
-    API.fetchAllCategories()
-      .then(categories => dispatch(getCategories(categories)));
+    API.fetchAllCategories().then(categories =>
+      dispatch(fetchCategorie(categories))
+    );
 }
 
-function getCategories(categories) {
+function fetchCategorie(categories) {
   return {
-    type: GET_CATEGORIES,
+    type: FETCH_CATEGORIES,
     categories
   };
 }

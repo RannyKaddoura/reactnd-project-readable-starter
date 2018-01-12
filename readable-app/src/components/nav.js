@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchCategories } from '../actions/categories';
+import { doFetchCategories } from '../actions/categories';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 
@@ -60,5 +60,5 @@ class Nav extends Component {
 }
 
 const mapStateToProps = ({ categories }) => ({ categories });
-const mapDispatchToProps = { fetchCategories };
+const mapDispatchToProps = { fetchCategories: doFetchCategories };
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Nav));

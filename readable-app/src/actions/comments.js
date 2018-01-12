@@ -2,8 +2,8 @@ import * as API from '../util/API';
 import * as uuid from 'uuid/v4';
 import moment from 'moment';
 
-export const GET_COMMENTS = 'GET_COMMENTS';
-export const ADD_COMMENT = 'ADD_COMMENT';
+export const FETCH_COMMENTS = 'FETCH_COMMENTS';
+export const CREATE_COMMENT = 'CREATE_COMMENT';
 export const UPDATE_COMMENT = 'UPDATE_COMMENT';
 export const VOTE_COMMENT = 'VOTE_COMMENT';
 
@@ -51,14 +51,14 @@ export function doVoteComment(comment, option) {
 
 function getComments(comments) {
   return {
-    type: GET_COMMENTS,
+    type: FETCH_COMMENTS,
     comments: comments
   };
 }
 
 function addComment(comment) {
   return {
-    type: ADD_COMMENT,
+    type: CREATE_COMMENT,
     comment: comment
   };
 }

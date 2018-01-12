@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import { GET_CATEGORIES } from '../actions/categories';
+import { FETCH_CATEGORIES } from '../actions/categories';
 import { GET_POSTS } from '../actions/posts';
-import { GET_POST } from '../actions/post';
-import { ADD_COMMENT, GET_COMMENTS, UPDATE_COMMENT, VOTE_COMMENT } from '../actions/comments'
+import { FETCH_POST } from '../actions/post';
+import { CREATE_COMMENT, FETCH_COMMENTS, UPDATE_COMMENT, VOTE_COMMENT } from '../actions/comments'
 import sortBy from 'sort-by';
 
 /**
@@ -10,7 +10,7 @@ import sortBy from 'sort-by';
  */
 function categories(state = [], action) {
   switch (action.type) {
-    case GET_CATEGORIES:
+    case FETCH_CATEGORIES:
       return action.categories;
     default:
       return state;
@@ -34,7 +34,7 @@ function posts(state = [], action) {
  */
 function post(state = {}, action) {
   switch (action.type) {
-    case GET_POST:
+    case FETCH_POST:
       return action.post;
     default:
       return state;
@@ -46,9 +46,9 @@ function post(state = {}, action) {
  */
 function comments(state = [], action) {
   switch (action.type) {
-    case GET_COMMENTS:
+    case FETCH_COMMENTS:
       return action.comments.sort(sortBy('timestamp'));
-    case ADD_COMMENT:
+    case CREATE_COMMENT:
       const newState = state.concat([action.comment]);
       return newState.sort(sortBy('timestamp'));
     case UPDATE_COMMENT:
