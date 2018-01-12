@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
-import { createComment, updateComment } from '../../../../actions/comments';
+import { doCreateComment, doUpdateComment } from '../../../../actions/comments';
 
 class CommentForm extends React.Component {
   state = {
@@ -14,15 +14,15 @@ class CommentForm extends React.Component {
     this.messageInput.value = '';
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
+  handleSubmit(e) {
+    e.preventDefault();
 
     //validate form
     if (this.validateForm()) {
       //fire up action to add a comment
       if (this.props.comment.id) {
         this.props.dispatch(
-          updateComment({
+          doUpdateComment({
             ...this.props.comment,
             author: this.nameInput.value,
             body: this.messageInput.value,
@@ -42,7 +42,7 @@ class CommentForm extends React.Component {
    */
   createComment = () => {
     this.props.dispatch(
-      createComment({
+      doCreateComment({
         author: this.nameInput.value,
         body: this.messageInput.value,
         parentId: this.props.post.id

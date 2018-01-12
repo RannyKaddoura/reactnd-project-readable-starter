@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import CommentForm from './comment-form';
 import { connect } from 'react-redux';
-import { voteComment } from '../../../../actions/comments';
+import { doVoteComment } from '../../../../actions/comments';
 
 class Comment extends Component {
   state = {
@@ -14,7 +14,7 @@ class Comment extends Component {
   };
 
   voteComment(option) {
-    this.props.dispatch(voteComment(this.props.comment, option));
+    this.props.dispatch(doVoteComment(this.props.comment, option));
   }
 
   render() {

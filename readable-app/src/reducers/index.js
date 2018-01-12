@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import { GET_CATEGORIES } from '../actions/categories';
 import { GET_POSTS } from '../actions/posts';
 import { GET_POST } from '../actions/post';
-import { ADD_COMMENT, GET_COMMENTS, UPDATE_COMMENT } from '../actions/comments'
+import { ADD_COMMENT, GET_COMMENTS, UPDATE_COMMENT, VOTE_COMMENT } from '../actions/comments'
 import sortBy from 'sort-by';
 
 /**
@@ -52,6 +52,7 @@ function comments(state = [], action) {
       const newState = state.concat([action.comment]);
       return newState.sort(sortBy('timestamp'));
     case UPDATE_COMMENT:
+    case VOTE_COMMENT:
       return state.map((comment) => {
         return comment.id === action.comment.id ? action.comment : comment;
       }).sort(sortBy('timestamp'));

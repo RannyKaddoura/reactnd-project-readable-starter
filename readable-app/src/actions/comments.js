@@ -5,17 +5,23 @@ import moment from 'moment';
 export const GET_COMMENTS = 'GET_COMMENTS';
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const UPDATE_COMMENT = 'UPDATE_COMMENT';
+export const VOTE_COMMENT = 'VOTE_COMMENT';
 
-export function fetchComments(postId) {
+/**
+ * fetch comments on api
+ */
+export function doFetchComments(postId) {
   return dispatch =>
     API.fetchComments(postId).then(comments => dispatch(getComments(comments)));
 }
 
-export function createComment({ body, author, parentId }) {
+/**
+ * create new comment on api
+ */
+export function doCreateComment({ body, author, parentId }) {
   const comment = {
     id: uuid(),
     timestamp: moment().unix(),
-    voteScore: 0,
     body,
     author,
     parentId
@@ -25,17 +31,21 @@ export function createComment({ body, author, parentId }) {
     API.postComment(comment).then(result => dispatch(addComment(result)));
 }
 
-export function updateComment(comment) {
+/**
+ * update comment
+ */
+export function doUpdateComment(comment) {
   return dispatch =>
-    API.putComment(comment).then(() => dispatch(doUpdateComment(comment)));
+    API.putComment(comment).then(() => dispatch(updateComment(comment)));
 }
 
-export function voteComment(comment, option) {
+/**
+ * up or downvote on api
+ */
+export function doVoteComment(comment, option) {
   return dispatch =>
-    API.voteComment(comment, option).then((result) =>
-      {
-        dispatch(doUpdateComment(result))
-      }
+    API.voteComment(comment, option).then((comment) =>
+        dispatch(voteComment(comment))
     );
 }
 
@@ -53,9 +63,16 @@ function addComment(comment) {
   };
 }
 
-function doUpdateComment(comment) {
+function updateComment(comment) {
   return {
     type: UPDATE_COMMENT,
+    comment
+  };
+}
+
+function voteComment(comment) {
+  return {
+    type: VOTE_COMMENT,
     comment
   };
 }
