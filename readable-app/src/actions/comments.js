@@ -6,6 +6,7 @@ export const FETCH_COMMENTS = 'FETCH_COMMENTS';
 export const CREATE_COMMENT = 'CREATE_COMMENT';
 export const UPDATE_COMMENT = 'UPDATE_COMMENT';
 export const VOTE_COMMENT = 'VOTE_COMMENT';
+export const DELETE_COMMENT = 'DELETE_COMMENT';
 
 /**
  * fetch comments on api
@@ -44,9 +45,17 @@ export function doUpdateComment(comment) {
  */
 export function doVoteComment(comment, option) {
   return dispatch =>
-    API.voteComment(comment, option).then((comment) =>
-        dispatch(voteComment(comment))
+    API.voteComment(comment, option).then(comment =>
+      dispatch(voteComment(comment))
     );
+}
+
+/**
+ * delete comment on api
+ */
+export function doDeleteComment(comment) {
+  return dispatch =>
+    API.deleteComment(comment).then(() => dispatch(deleteComment(comment)));
 }
 
 function getComments(comments) {
@@ -73,6 +82,13 @@ function updateComment(comment) {
 function voteComment(comment) {
   return {
     type: VOTE_COMMENT,
+    comment
+  };
+}
+
+function deleteComment(comment) {
+  return {
+    type: DELETE_COMMENT,
     comment
   };
 }

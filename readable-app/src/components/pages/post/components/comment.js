@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import CommentForm from './comment-form';
 import { connect } from 'react-redux';
-import { doVoteComment } from '../../../../actions/comments';
+import { doVoteComment, doDeleteComment } from '../../../../actions/comments';
 
 class Comment extends Component {
   state = {
@@ -13,8 +13,12 @@ class Comment extends Component {
     this.setState(state => ({ edit: !state.edit }));
   };
 
-  voteComment(option) {
+  voteComment = (option) => {
     this.props.dispatch(doVoteComment(this.props.comment, option));
+  }
+
+  deleteComment = () => {
+    this.props.dispatch(doDeleteComment(this.props.comment));
   }
 
   render() {
@@ -44,7 +48,7 @@ class Comment extends Component {
             </a>
           </li>
           <li className="list-inline-item">
-            <a className="btn">
+            <a className="btn" onClick={() => this.deleteComment()}>
               <i className="fa fa-times" aria-hidden="true" />
             </a>
           </li>
