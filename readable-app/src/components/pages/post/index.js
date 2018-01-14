@@ -14,10 +14,11 @@ class Post extends React.Component {
   }
 
   render() {
+    const {post, comments} = this.props;
     return (
       <div>
         <Nav />
-        <PostDetails post={this.props.post} comments={this.props.comments} />
+        <PostDetails post={post} comments={comments} />
       </div>
     );
   }
