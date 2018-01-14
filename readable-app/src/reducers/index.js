@@ -4,6 +4,7 @@ import { GET_POSTS } from '../actions/posts';
 import { FETCH_POST } from '../actions/post';
 import { CREATE_COMMENT, DELETE_COMMENT, FETCH_COMMENTS, UPDATE_COMMENT, VOTE_COMMENT } from '../actions/comments'
 import sortBy from 'sort-by';
+import { reducer as formReducer } from 'redux-form';
 
 /**
  * Categories reducer
@@ -69,5 +70,6 @@ export default combineReducers({
   categories,
   posts,
   post,
-  comments
+  comments,
+  form: formReducer
 });
