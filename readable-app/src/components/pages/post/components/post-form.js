@@ -10,7 +10,7 @@ import {
 
 class PostForm extends React.Component {
   render() {
-    const { handleSubmit, categories } = this.props;
+    const { handleSubmit, categories, reset, pristine, submitting } = this.props;
     return (
       <form onSubmit={handleSubmit}>
         <h1 className="display-4">Create Post</h1>
@@ -50,9 +50,20 @@ class PostForm extends React.Component {
           ))}
         </Field>
 
-        <button className="btn btn-primary">Save</button>
-        <button type="button" className="btn btn-secondary">
-          Cancel
+        <button
+          className="btn btn-primary"
+          type="submit"
+          disabled={pristine || submitting}
+        >
+          Submit
+        </button>
+        <button
+          className="btn btn-secondary"
+          type="button"
+          disabled={pristine || submitting}
+          onClick={reset}
+        >
+          Undo Changes
         </button>
       </form>
     );
