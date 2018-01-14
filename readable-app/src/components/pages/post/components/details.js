@@ -2,6 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import CommentForm from './comment-form';
 import Comment from './comment';
+import {Link} from 'react-router-dom';
 
 export default function PostDetails(props) {
   const { post, comments } = props;
@@ -48,9 +49,9 @@ export default function PostDetails(props) {
           <div className="sidebar-module sidebar-module-inset">
             <ul className="list-inline">
               <li className="list-inline-item">
-                <a className="btn">
+                <Link to={`/${post.category}/${post.id}/edit`} className="btn">
                   <i className="fa fa-pencil-square-o" aria-hidden="true" />
-                </a>
+                </Link>
               </li>
               <li className="list-inline-item">
                 <a className="btn">
