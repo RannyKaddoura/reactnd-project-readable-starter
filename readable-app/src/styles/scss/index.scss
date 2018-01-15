@@ -9,8 +9,13 @@ body {
     height: 100%;
     .card-text{
       min-height: 10rem;
+      max-height: 160px;
+      overflow: hidden;
     }
-
+    .card-title{
+      height: 56px;
+      overflow: hidden;
+    }
   }
 }
 .sidebar-module-inset {
