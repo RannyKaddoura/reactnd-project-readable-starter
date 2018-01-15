@@ -3,7 +3,7 @@ import Nav from '../../nav';
 import PostForm from './components/post-form';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { doFetchPost } from '../../../actions/post'
+import { doFetchPost, doCreatePost, doUpdatePost } from '../../../actions/post'
 
 class EditPost extends React.Component {
 
@@ -14,6 +14,16 @@ class EditPost extends React.Component {
     }
   }
 
+  handleSubmit = (post) => {
+    if(post.id){
+      this.props.dispatch(doUpdatePost(post));
+    }else{
+      this.props.dispatch(doCreatePost({...post}));
+    }
+
+    this.props.history.push(`/${post.category}/${post.id}`);
+  }
+
   render() {
     const {post} = this.props;
     return (
@@ -22,7 +32,7 @@ class EditPost extends React.Component {
         <div className="container">
           <div className="row">
             <div className="col-sm">
-              <PostForm post={post} onSubmit={values => {console.log(values)}} />
+              <PostForm post={post} onSubmit={this.handleSubmit} />
             </div>
           </div>
         </div>

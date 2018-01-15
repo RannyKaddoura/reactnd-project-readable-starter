@@ -44,6 +44,30 @@ export const fetchPost = id =>
   fetch(`${api}/posts/${id}`, { headers }).then(res => res.json());
 
 /**
+ * @param post
+ * @returns {Promise<any>}
+ */
+export const postPost = post =>
+  fetch(`${api}/posts`, {
+    headers,
+    method: 'post',
+    body: JSON.stringify(post)
+  }).then(response => response.json());
+
+/**
+ * update/put post
+ *
+ * @param post
+ * @returns {Promise<any>}
+ */
+export const putPost = post =>
+  fetch(`${api}/posts/${post.id}`, {
+    headers,
+    method: 'put',
+    body: JSON.stringify({title: post.title, body: post.body})
+  }).then(response => response.json());
+
+  /**
  * fetch comments
  *
  * @param postId
@@ -67,7 +91,7 @@ export const postComment = comment =>
   }).then(response => response.json());
 
 /**
- * post a comment
+ * update/put a comment
  *
  * @param comment
  * @returns {Promise<any>}
