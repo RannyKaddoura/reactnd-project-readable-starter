@@ -1,5 +1,5 @@
-import { CREATE_COMMENT, DELETE_COMMENT, FETCH_COMMENTS, UPDATE_COMMENT, VOTE_COMMENT } from '../actions/comments'
-import sortBy from 'sort-by'
+import { CREATE_COMMENT, DELETE_COMMENT, FETCH_COMMENTS, UPDATE_COMMENT, VOTE_COMMENT } from '../actions/comments';
+import sortBy from 'sort-by';
 
 /**
  * comments reducer

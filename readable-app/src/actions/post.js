@@ -21,7 +21,10 @@ export function doFetchPost(postId) {
  */
 export function doUpdatePost(post) {
   return dispatch =>
-    API.putPost(post).then(post => dispatch(updatePost(post)));
+    API.putPost(post).then(post => {
+      dispatch(updatePost(post));
+      return post;
+    });
 }
 /**
  * delete post
@@ -45,7 +48,10 @@ export function doCreatePost({ body, author, title, category }) {
   };
 
   return dispatch =>
-    API.postPost(post).then(result => dispatch(createPost(result)));
+    API.postPost(post).then(post => {
+      dispatch(createPost(post));
+      return post;
+    });
 }
 
 /**

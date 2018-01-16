@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { fetchPostsByCategory, fetchPosts } from '../../../../actions/posts';
+import { fetchPostsByCategory, fetchPosts, doSortPosts } from '../../../../actions/posts';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 
@@ -23,6 +23,10 @@ class Posts extends React.Component {
     if (prevCategory !== currentCategory) {
       this.doFetchCategories();
     }
+  }
+
+  sortPosts(sortBy){
+    this.props.doSortPosts(this.props.posts, sortBy);
   }
 
   doFetchCategories = () => {
@@ -47,6 +51,13 @@ class Posts extends React.Component {
             {category === undefined ? 'all' : category}
           </span>
         </h1>
+        <div className="float-right" style={{marginTop: -25}}>
+          <select name="sort" onChange={(e) => this.sortPosts(e.target.value)}>
+            <option value="">Please select...</option>
+            <option value="timestamp">Date</option>
+            <option value="voteScore">Votes</option>
+          </select>
+        </div>
         <hr className="my-4" />
 
         <div className="row card-deck">
@@ -120,7 +131,7 @@ class Posts extends React.Component {
 }
 
 const mapStateToProps = ({ posts }) => ({ posts });
-const mapDispatchToProps = { fetchPostsByCategory, fetchPosts };
+const mapDispatchToProps = { fetchPostsByCategory, fetchPosts, doSortPosts };
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(Posts)
 );
