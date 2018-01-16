@@ -9,7 +9,7 @@ export default function posts(state = [], action) {
     case GET_POSTS:
       return action.posts;
     case SORT_POSTS:
-      console.log(action.posts);
+
       return action.posts.concat().sort(sortBy(`${action.sortBy}`));
     default:
       return state;
