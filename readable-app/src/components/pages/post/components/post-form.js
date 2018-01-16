@@ -29,6 +29,7 @@ class PostForm extends React.Component {
           component={renderTextarea}
           label="Body"
           validate={[required]}
+          rows="5"
         />
         <Field
           name="author"

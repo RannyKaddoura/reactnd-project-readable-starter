@@ -9,15 +9,15 @@ class Comment extends Component {
     edit: false
   };
 
-  toggleEdit = () => {
+  toggleEdit(){
     this.setState(state => ({ edit: !state.edit }));
   };
 
-  voteComment = (option) => {
+  voteComment(option){
     this.props.dispatch(doVoteComment(this.props.comment, option));
   }
 
-  deleteComment = () => {
+  deleteComment(){
     this.props.dispatch(doDeleteComment(this.props.comment));
   }
 

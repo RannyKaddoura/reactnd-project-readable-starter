@@ -5,6 +5,7 @@ import moment from 'moment/moment'
 export const FETCH_POST = 'FETCH_POST';
 export const CREATE_POST = 'CREATE_POST';
 export const UPDATE_POST = 'UPDATE_POST';
+export const VOTE_POST = 'VOTE_POST';
 
 /**
  * fetch comments on api
@@ -39,6 +40,16 @@ export function doCreatePost({ body, author, title, category }) {
     API.postPost(post).then(result => dispatch(createPost(result)));
 }
 
+/**
+ * up or downvote on api
+ */
+export function doVotePost(post, option) {
+  return dispatch =>
+    API.votePost(post, option).then(post =>
+      dispatch(votePost(post))
+    );
+}
+
 function fetchPost(post) {
   return {
     type: FETCH_POST,
@@ -56,6 +67,13 @@ function updatePost(post){
 function createPost(post){
   return {
     type: CREATE_POST,
+    post
+  }
+}
+
+function votePost(post){
+  return {
+    type: VOTE_POST,
     post
   }
 }

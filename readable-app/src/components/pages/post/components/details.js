@@ -4,13 +4,8 @@ import CommentForm from './comment-form';
 import Comment from './comment';
 import { Link } from 'react-router-dom';
 
-function nl2br (str, is_xhtml) {
-  var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';
-  return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
-}
-
 export default function PostDetails(props) {
-  const { post, comments } = props;
+  const { post, comments, vote } = props;
   return (
     <div className="container">
       <div className="row">
@@ -75,10 +70,10 @@ export default function PostDetails(props) {
                   <span> {post.voteScore}</span>
                 </span>
                 <span className="float-right">
-                  <button className="btn btn-success btn-xs mr-1">
+                  <button className="btn btn-success btn-xs mr-1" onClick={() => vote({option: 'upVote'})}>
                     <i className="fa fa-thumbs-o-up" />
                   </button>
-                  <button className="btn btn-warning btn-xs">
+                  <button className="btn btn-warning btn-xs" onClick={() => vote({option: 'downVote'})}>
                     <i className="fa fa-thumbs-o-down" />
                   </button>
                 </span>

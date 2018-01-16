@@ -67,6 +67,20 @@ export const putPost = post =>
     body: JSON.stringify({title: post.title, body: post.body})
   }).then(response => response.json());
 
+/**
+ *
+ * @param post
+ * @param option
+ * @returns {Promise<Response>}
+ */
+export const votePost = (post, option) => {
+  return fetch(`${api}/posts/${post.id}`, {
+    headers,
+    method: 'post',
+    body: JSON.stringify(option)
+  }).then(response => response.json());
+}
+
   /**
  * fetch comments
  *

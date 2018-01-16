@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment';
 import { connect } from 'react-redux';
 import { doCreateComment, doUpdateComment } from '../../../../actions/comments';
 
@@ -39,7 +38,7 @@ class CommentForm extends React.Component {
   /**
    * create comment from form data
    */
-  createComment = () => {
+  createComment() {
     this.props.dispatch(
       doCreateComment({
         author: this.nameInput.value,
@@ -47,7 +46,7 @@ class CommentForm extends React.Component {
         parentId: this.props.post.id
       })
     );
-  };
+  }
 
   /**
    * simple form validation
@@ -106,6 +105,7 @@ class CommentForm extends React.Component {
     );
   }
 }
+
 CommentForm.defaultProps = {
   comment: {}
 };

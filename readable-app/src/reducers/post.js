@@ -1,4 +1,4 @@
-import { CREATE_POST, FETCH_POST, UPDATE_POST } from '../actions/post';
+import { CREATE_POST, FETCH_POST, UPDATE_POST, VOTE_POST } from '../actions/post'
 
 /**
  * single post reducer
@@ -8,6 +8,7 @@ export default function post(state = {}, action) {
     case FETCH_POST:
     case CREATE_POST:
     case UPDATE_POST:
+    case VOTE_POST:
       return action.post;
     default:
       return state;
