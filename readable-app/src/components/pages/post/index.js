@@ -9,8 +9,8 @@ import { doFetchComments } from '../../../actions/comments';
 class Post extends React.Component {
   componentDidMount() {
     const postId = this.props.match.params.post;
-    this.props.dispatch(doFetchPost(postId));
-    this.props.dispatch(doFetchComments(postId));
+    this.props.doFetchPost(postId);
+    this.props.doFetchComments(postId);
   }
 
   render() {
@@ -25,5 +25,5 @@ class Post extends React.Component {
 }
 
 const mapStateToProps = ({ post, comments }) => ({ post, comments });
-
-export default withRouter(connect(mapStateToProps)(Post));
+const mapDispatchToProps = {doFetchPost, doFetchComments};
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Post));
