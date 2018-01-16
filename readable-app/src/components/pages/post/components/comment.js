@@ -14,11 +14,11 @@ class Comment extends Component {
   };
 
   voteComment(option){
-    this.props.dispatch(doVoteComment(this.props.comment, option));
+    this.props.doVoteComment(this.props.comment, option);
   }
 
   deleteComment(){
-    this.props.dispatch(doDeleteComment(this.props.comment));
+    this.props.doDeleteComment(this.props.comment);
   }
 
   render() {
@@ -71,11 +71,11 @@ class Comment extends Component {
         </ul>
 
         {this.state.edit && (
-          <CommentForm comment={comment} toggleEdit={this.toggleEdit} />
+          <CommentForm comment={comment} toggleEdit={() => this.toggleEdit()} />
         )}
       </div>
     );
   }
 }
-
-export default connect()(Comment);
+const mapDispatchToProps = {doDeleteComment, doVoteComment};
+export default connect(() => ({}),mapDispatchToProps)(Comment);

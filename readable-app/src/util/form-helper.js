@@ -29,22 +29,18 @@ export const renderTextarea = ({
   label,
   rows,
   meta: { touched, error, warning }
-}) => {
-  console.log(rows)
-  return (
-    <div className="form-group">
-      <label htmlFor="body">Body</label>
-      <textarea
-        {...input}
-        placeholder="Body"
-        className={'form-control' + (touched && error ? ' is-invalid' : '')}
-        rows={rows}
-      />
-      {touched && (error && <div className="invalid-feedback">{error}</div>)}
-    </div>
-  )
-
-};
+}) => (
+  <div className="form-group">
+    <label htmlFor="body">Body</label>
+    <textarea
+      {...input}
+      placeholder="Body"
+      className={'form-control' + (touched && error ? ' is-invalid' : '')}
+      rows={rows}
+    />
+    {touched && (error && <div className="invalid-feedback">{error}</div>)}
+  </div>
+);
 
 /**
  * bootstrap select component for redux form Field

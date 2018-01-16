@@ -20,13 +20,11 @@ class CommentForm extends React.Component {
     if (this.validateForm()) {
       //fire up action to add a comment
       if (this.props.comment.id) {
-        this.props.dispatch(
-          doUpdateComment({
-            ...this.props.comment,
-            author: this.nameInput.value,
-            body: this.messageInput.value
-          })
-        );
+        this.props.doUpdateComment({
+          ...this.props.comment,
+          author: this.nameInput.value,
+          body: this.messageInput.value
+        });
         this.props.toggleEdit();
       } else {
         this.createComment();
@@ -39,13 +37,11 @@ class CommentForm extends React.Component {
    * create comment from form data
    */
   createComment() {
-    this.props.dispatch(
-      doCreateComment({
-        author: this.nameInput.value,
-        body: this.messageInput.value,
-        parentId: this.props.post.id
-      })
-    );
+    this.props.doCreateComment({
+      author: this.nameInput.value,
+      body: this.messageInput.value,
+      parentId: this.props.post.id
+    });
   }
 
   /**
@@ -110,4 +106,5 @@ CommentForm.defaultProps = {
   comment: {}
 };
 const mapStateToProps = ({ post }) => ({ post });
-export default connect(mapStateToProps)(CommentForm);
+const mapDispatchToProps = { doUpdateComment, doCreateComment };
+export default connect(mapStateToProps, mapDispatchToProps)(CommentForm);

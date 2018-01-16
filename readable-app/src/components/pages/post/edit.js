@@ -10,15 +10,15 @@ class EditPost extends React.Component {
   componentDidMount(){
     const postId = this.props.match.params.post;
     if(postId){
-      this.props.dispatch(doFetchPost(postId));
+      this.props.doFetchPost(postId);
     }
   }
 
   handleSubmit = (post) => {
     if(post.id){
-      this.props.dispatch(doUpdatePost(post));
+      this.props.doUpdatePost(post);
     }else{
-      this.props.dispatch(doCreatePost({...post}));
+      this.props.doCreatePost({...post});
     }
 
     this.props.history.push(`/${post.category}/${post.id}`);
@@ -32,7 +32,7 @@ class EditPost extends React.Component {
         <div className="container">
           <div className="row">
             <div className="col-sm">
-              <PostForm post={post} onSubmit={this.handleSubmit} />
+              <PostForm post={post} onSubmit={(post) => this.handleSubmit(post)} />
             </div>
           </div>
         </div>
@@ -42,4 +42,5 @@ class EditPost extends React.Component {
 }
 
 const mapStateToProps = ({post}) => ({post});
-export default withRouter(connect(mapStateToProps)(EditPost));
+const mapDispatchToProps = { doFetchPost, doCreatePost, doUpdatePost };
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(EditPost));
