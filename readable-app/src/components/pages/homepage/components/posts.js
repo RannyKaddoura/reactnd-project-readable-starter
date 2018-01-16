@@ -66,7 +66,7 @@ class Posts extends React.Component {
                         <i className="fa fa-calendar" aria-hidden="true" />
                         {moment
                           .unix(post.timestamp)
-                          .format('MMM Do YYYY, h:mm:ss a')}
+                          .format('D MMM YYYY h:ma')}
                       </div>
                       <div className="author">
                         <i className="fa fa-user-circle-o" aria-hidden="true" />{' '}

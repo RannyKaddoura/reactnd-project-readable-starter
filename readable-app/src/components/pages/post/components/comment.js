@@ -28,7 +28,7 @@ class Comment extends Component {
         <strong>{comment.author}</strong>
         <span> </span>
         <i className="text-muted">
-          {moment.unix(comment.timestamp).format('MMM Do YYYY h:mm:ss a')}
+          {moment.unix(comment.timestamp).format('D MMM YYYY h:ma ')}
         </i>
         <span> </span>
         {comment.voteScore}

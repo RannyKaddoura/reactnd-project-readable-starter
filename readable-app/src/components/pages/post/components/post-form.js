@@ -9,11 +9,12 @@ import {
 } from '../../../../util/form-helper';
 
 class PostForm extends React.Component {
+
   render() {
-    const { handleSubmit, categories, reset, pristine, submitting } = this.props;
+    const { handleSubmit, categories, reset, pristine, submitting, post, history } = this.props;
     return (
       <form onSubmit={handleSubmit}>
-        <h1 className="display-4">Create Post</h1>
+        <h1 className="display-4">{ !post.id ? 'Create' : 'Update' } Post</h1>
         <hr className="my-4" />
 
         <Field

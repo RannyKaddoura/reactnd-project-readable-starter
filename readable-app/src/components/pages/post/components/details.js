@@ -2,7 +2,12 @@ import React from 'react';
 import moment from 'moment';
 import CommentForm from './comment-form';
 import Comment from './comment';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
+function nl2br (str, is_xhtml) {
+  var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';
+  return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
+}
 
 export default function PostDetails(props) {
   const { post, comments } = props;
@@ -11,21 +16,19 @@ export default function PostDetails(props) {
       <div className="row">
         <div className="col-sm-8 blog-main">
           <div className="blog-post">
-            <div className="jumbotron">
-              <h2>{post.title}</h2>
-              <p className="blog-post-meta">
-                <strong>{post.author}</strong>{' posted on '}
-                {moment.unix(post.timestamp).format('MMM Do YYYY h:mm:ss a')}
-                <i
-                  className={
-                    'fa ' +
-                    (post.voteScore < 0 ? 'fa-thumbs-o-down' : 'fa-thumbs-o-up')
-                  }
-                  aria-hidden="true"
-                />
-              </p>
-              <hr className="my-4" />
-              <p className="blockquote">{post.body}</p>
+            <div className="jumbotron p-3">
+              <div className="post-body bg-light p-2">
+                <h2>{post.title}</h2>
+                <p className="blog-post-meta text-muted">
+                  <strong>{post.author}</strong>
+                  {' posted on '}
+                  {moment.unix(post.timestamp).format('D MMM YYYY h:ma')}
+                </p>
+                <hr className="my-4" />
+                <div>
+                  {post.body}
+                </div>
+              </div>
             </div>
 
             <hr className="my-3" />
@@ -47,32 +50,57 @@ export default function PostDetails(props) {
         </div>
         <aside className="col-sm-3 ml-sm-auto blog-sidebar">
           <div className="sidebar-module sidebar-module-inset">
-            <ul className="list-inline">
-              <li className="list-inline-item">
-                <Link to={`/${post.category}/${post.id}/edit`} className="btn">
-                  <i className="fa fa-pencil-square-o" aria-hidden="true" />
-                </Link>
+            <ul className="list-group">
+              <li className="list-group-item">
+                <i className="fa fa-user" /> {post.author}
               </li>
-              <li className="list-inline-item">
-                <a className="btn">
-                  <i className="fa fa-times" aria-hidden="true" />
-                </a>
+              <li className="list-group-item">
+                <i className="fa fa-tag" /> {post.category}
               </li>
-              <li className="list-inline-item">
-                <a
-                  className="btn"
-                >
-                  <i className="fa fa-thumbs-o-up" aria-hidden="true" />
-                </a>
+              <li className="list-group-item">
+                <i className="fa fa-calendar" />{' '}
+                {moment.unix(post.timestamp).format('D MMM YYYY h:ma ')}
               </li>
-              <li className="list-inline-item">
-                <a
-                  className="btn"
-                >
-                  <i className="fa fa-thumbs-o-down" aria-hidden="true" />
-                </a>
+              <li className="list-group-item">
+                <span>
+                  <i
+                    className={
+                      'fa ' +
+                      (post.voteScore < 0
+                        ? 'fa-thumbs-o-down'
+                        : 'fa-thumbs-o-up')
+                    }
+                    aria-hidden="true"
+                  />
+                  <span> {post.voteScore}</span>
+                </span>
+                <span className="float-right">
+                  <button className="btn btn-success btn-xs mr-1">
+                    <i className="fa fa-thumbs-o-up" />
+                  </button>
+                  <button className="btn btn-warning btn-xs">
+                    <i className="fa fa-thumbs-o-down" />
+                  </button>
+                </span>
+                <span className="clearfix" />
               </li>
             </ul>
+
+            <div className="float-right my-2">
+              <Link
+                to={`/${post.category}/${post.id}/edit`}
+                className="btn btn-info mr-1"
+              >
+                <i className="fa fa-pencil-square-o" aria-hidden="true" /> Edit
+              </Link>
+              <Link
+                to={`/${post.category}/${post.id}/edit`}
+                className="btn btn-danger"
+              >
+                <i className="fa fa-times" aria-hidden="true" /> Delete
+              </Link>
+            </div>
+            <div className="clearfix" />
           </div>
         </aside>
       </div>
