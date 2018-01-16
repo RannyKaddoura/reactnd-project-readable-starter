@@ -6,6 +6,7 @@ export const FETCH_POST = 'FETCH_POST';
 export const CREATE_POST = 'CREATE_POST';
 export const UPDATE_POST = 'UPDATE_POST';
 export const VOTE_POST = 'VOTE_POST';
+export const DELETE_POST = 'DELETE_POST';
 
 /**
  * fetch comments on api
@@ -21,6 +22,13 @@ export function doFetchPost(postId) {
 export function doUpdatePost(post) {
   return dispatch =>
     API.putPost(post).then(post => dispatch(updatePost(post)));
+}
+/**
+ * delete post
+ */
+export function doDeletePost(post) {
+  return dispatch =>
+    API.deletePost(post).then(() => dispatch(deletePost()));
 }
 
 /**
@@ -75,5 +83,11 @@ function votePost(post){
   return {
     type: VOTE_POST,
     post
+  }
+}
+
+function deletePost(){
+  return {
+    type: DELETE_POST
   }
 }

@@ -5,7 +5,7 @@ import Comment from './comment';
 import { Link } from 'react-router-dom';
 
 export default function PostDetails(props) {
-  const { post, comments, vote } = props;
+  const { post, comments, votePost, deletePost } = props;
   return (
     <div className="container">
       <div className="row">
@@ -70,10 +70,10 @@ export default function PostDetails(props) {
                   <span> {post.voteScore}</span>
                 </span>
                 <span className="float-right">
-                  <button className="btn btn-success btn-xs mr-1" onClick={() => vote({option: 'upVote'})}>
+                  <button className="btn btn-success btn-xs mr-1" onClick={() => votePost({option: 'upVote'})}>
                     <i className="fa fa-thumbs-o-up" />
                   </button>
-                  <button className="btn btn-warning btn-xs" onClick={() => vote({option: 'downVote'})}>
+                  <button className="btn btn-warning btn-xs" onClick={() => votePost({option: 'downVote'})}>
                     <i className="fa fa-thumbs-o-down" />
                   </button>
                 </span>
@@ -88,12 +88,12 @@ export default function PostDetails(props) {
               >
                 <i className="fa fa-pencil-square-o" aria-hidden="true" /> Edit
               </Link>
-              <Link
-                to={`/${post.category}/${post.id}/edit`}
+              <button
                 className="btn btn-danger"
+                onClick={() => deletePost()}
               >
                 <i className="fa fa-times" aria-hidden="true" /> Delete
-              </Link>
+              </button>
             </div>
             <div className="clearfix" />
           </div>

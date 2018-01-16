@@ -81,6 +81,18 @@ export const votePost = (post, option) => {
   }).then(response => response.json());
 }
 
+/**
+ *
+ * @param post
+ * @returns {Promise<Response>}
+ */
+export const deletePost = (post) => {
+  return fetch(`${api}/posts/${post.id}`, {
+    headers,
+    method: 'delete'
+  }).then(response => response.json());
+}
+
   /**
  * fetch comments
  *

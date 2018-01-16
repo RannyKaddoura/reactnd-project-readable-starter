@@ -3,8 +3,7 @@ import Nav from '../../nav';
 import PostDetails from './components/details';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { doFetchPost } from '../../../actions/post';
-import { doVotePost } from '../../../actions/post';
+import { doFetchPost, doVotePost, doDeletePost } from '../../../actions/post';
 import { doFetchComments } from '../../../actions/comments';
 
 class Post extends React.Component {
@@ -18,17 +17,21 @@ class Post extends React.Component {
     this.props.doVotePost(this.props.post, option);
   }
 
+  deletePost(){
+    this.props.doDeletePost(this.props.post).then(() => {this.props.history.push("/")});
+  }
+
   render() {
     const {post, comments} = this.props;
     return (
       <div>
         <Nav />
-        <PostDetails post={post} comments={comments} vote={(option) => this.votePost(option)} />
+        <PostDetails post={post} comments={comments} votePost={(option) => this.votePost(option)} deletePost={() => this.deletePost()} />
       </div>
     );
   }
 }
 
 const mapStateToProps = ({ post, comments }) => ({ post, comments });
-const mapDispatchToProps = {doFetchPost, doFetchComments, doVotePost};
+const mapDispatchToProps = {doFetchPost, doFetchComments, doVotePost, doDeletePost};
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Post));
