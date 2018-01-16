@@ -25,17 +25,23 @@ class Posts extends React.Component {
     }
   }
 
-  sortPosts(sortBy){
-    this.props.doSortPosts(this.props.posts, sortBy);
+  sortPosts(){
+    if(this.sortSelect.value){
+      this.props.doSortPosts(this.props.posts, this.sortSelect.value);
+    }
   }
 
   doFetchCategories = () => {
     const { category } = this.props.match.params;
 
     if (category !== undefined) {
-      this.props.fetchPostsByCategory(category);
+      this.props.fetchPostsByCategory(category).then(() => {
+        this.sortPosts();
+      });
     } else {
-      this.props.fetchPosts();
+      this.props.fetchPosts().then(() => {
+        this.sortPosts();
+      });
     }
   }
 
@@ -52,10 +58,12 @@ class Posts extends React.Component {
           </span>
         </h1>
         <div className="float-right" style={{marginTop: -25}}>
-          <select name="sort" onChange={(e) => this.sortPosts(e.target.value)}>
+          <select ref={(input) => { this.sortSelect = input; }} name="sort" onChange={(e) => this.sortPosts()}>
             <option value="">Please select...</option>
-            <option value="timestamp">Date</option>
-            <option value="voteScore">Votes</option>
+            <option value="-timestamp">Date: From Newest to Oldest</option>
+            <option value="timestamp">Date: From Oldest to Newest</option>
+            <option value="-voteScore">Votes: From Low to High</option>
+            <option value="voteScore">Votes: From High to Low</option>
           </select>
         </div>
         <hr className="my-4" />
