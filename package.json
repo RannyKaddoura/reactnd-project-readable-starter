@@ -1,9 +1,41 @@
 {
+  "name": "readable-app",
+  "version": "0.1.0",
+  "private": true,
+  "main": "/src/index.js",
   "dependencies": {
+    "body-parser": "^1.17.1",
+    "bootstrap": "4.0.0-beta.3",
+    "clone": "^2.1.1",
+    "concurrently": "^3.5.1",
+    "cors": "^2.8.3",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.2",
+    "font-awesome": "^4.7.0",
+    "moment": "^2.20.1",
+    "moment-timezone": "^0.5.14",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
+    "react-scripts": "1.0.17",
     "redux": "^3.7.2",
-    "redux-form": "^7.2.0",
-    "redux-thunk": "^2.2.0"
+    "redux-form": "^7.2.1",
+    "redux-thunk": "^2.2.0",
+    "sort-by": "^1.2.0",
+    "uuid": "^3.1.0"
+  },
+  "devDependencies": {
+    "node-sass-import": "^1.1.1"
+  },
+  "scripts": {
+    "start": "npm run server-and-readable",
+    "server": "node api-server/server",
+    "readable": "cd readable-app && react-scripts start",
+    "server-and-readable": "concurrently --kill-others \"npm run server\" \"npm run readable\"",
+    "build": "cd readable-app && react-scripts build",
+    "test": "cd readable-app && react-scripts test --env=jsdom",
+    "eject": "cd readable-app && react-scripts eject",
+    "sass": "node-sass -w readable-app/src/styles/scss/index.scss -o readable-app/src/styles/css/ --importer node_modules/node-sass-import"
   }
 }
