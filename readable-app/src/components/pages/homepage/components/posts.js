@@ -60,8 +60,8 @@ class Posts extends React.Component {
             <option value="" disabled="disabled">Please select...</option>
             <option value="-timestamp">Date: From Newest to Oldest</option>
             <option value="timestamp">Date: From Oldest to Newest</option>
-            <option value="-voteScore">Votes: From Low to High</option>
-            <option value="voteScore">Votes: From High to Low</option>
+            <option value="voteScore">Votes: From Low to High</option>
+            <option value="-voteScore">Votes: From High to Low</option>
           </select>
         </div>
         <hr className="my-4" />
