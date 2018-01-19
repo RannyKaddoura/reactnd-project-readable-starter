@@ -4,7 +4,7 @@ const api = 'http://localhost:3001';
 let token = 'fred';
 
 const headers = {
-  'Content-Type' : 'application/json',
+  'Content-Type': 'application/json',
   Accept: 'application/json',
   Authorization: token
 };
@@ -64,7 +64,7 @@ export const putPost = post =>
   fetch(`${api}/posts/${post.id}`, {
     headers,
     method: 'put',
-    body: JSON.stringify({title: post.title, body: post.body})
+    body: JSON.stringify({ title: post.title, body: post.body })
   }).then(response => response.json());
 
 /**
@@ -79,29 +79,28 @@ export const votePost = (post, option) => {
     method: 'post',
     body: JSON.stringify(option)
   }).then(response => response.json());
-}
+};
 
 /**
  *
  * @param post
  * @returns {Promise<Response>}
  */
-export const deletePost = (post) => {
+export const deletePost = post => {
   return fetch(`${api}/posts/${post.id}`, {
     headers,
     method: 'delete'
   }).then(response => response.json());
-}
+};
 
-  /**
+/**
  * fetch comments
  *
  * @param postId
  * @returns {Promise<any>}
  */
 export const fetchComments = postId =>
-  fetch(`${api}/posts/${postId}/comments`, { headers })
-    .then(res => res.json());
+  fetch(`${api}/posts/${postId}/comments`, { headers }).then(res => res.json());
 
 /**
  * post a comment
@@ -141,16 +140,16 @@ export const voteComment = (comment, option) => {
     method: 'post',
     body: JSON.stringify(option)
   }).then(response => response.json());
-}
+};
 
 /**
  *
  * @param comment
  * @returns {Promise<Response>}
  */
-export const deleteComment = (comment) => {
+export const deleteComment = comment => {
   return fetch(`${api}/comments/${comment.id}`, {
     headers,
     method: 'delete'
   }).then(response => response.json());
-}
+};

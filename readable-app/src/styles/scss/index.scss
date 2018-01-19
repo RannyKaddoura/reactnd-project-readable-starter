@@ -3,16 +3,15 @@ body {
   padding-bottom: 5rem;
 }
 
-.card-deck
-{
-  .card{
+.card-deck {
+  .card {
     height: 100%;
-    .card-text{
+    .card-text {
       min-height: 10rem;
       max-height: 160px;
       overflow: hidden;
     }
-    .card-title{
+    .card-title {
       height: 56px;
       overflow: hidden;
     }
@@ -21,9 +20,9 @@ body {
 .sidebar-module-inset {
   padding: 1rem;
   background-color: #e9ecef;
-  border-radius: .25rem;
+  border-radius: 0.25rem;
 }
 
-.blog-post .post-body{
+.blog-post .post-body {
   white-space: pre-line;
 }
