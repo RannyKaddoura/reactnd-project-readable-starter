@@ -1,7 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { fetchPostsByCategory, fetchPosts, doSortPosts } from '../../../../actions/posts';
+import {
+  fetchPostsByCategory,
+  fetchPosts,
+  doSortPosts
+} from '../../../../actions/posts';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 
@@ -25,13 +29,13 @@ class Posts extends React.Component {
     }
   }
 
-  sortPosts(){
+  sortPosts() {
     this.props.doSortPosts(this.props.posts, this.sortSelect.value);
   }
 
   doFetchCategories = () => {
     const { category } = this.props.match.params;
-    this.sortSelect.value = ""; //if removed, filters are sticky over catgeories
+    this.sortSelect.value = ''; //if removed, filters are sticky over catgeories
     if (category !== undefined) {
       this.props.fetchPostsByCategory(category).then(() => {
         this.sortPosts();
@@ -41,7 +45,7 @@ class Posts extends React.Component {
         this.sortPosts();
       });
     }
-  }
+  };
 
   render() {
     const { posts } = this.props;
@@ -49,15 +53,25 @@ class Posts extends React.Component {
 
     return (
       <div className="container">
-        <h1 className="display-4" style={{display:'inline-block'}}>
+        <h1 className="display-4" style={{ display: 'inline-block' }}>
           Posts{' '}
           <span className="lead">
             {category === undefined ? 'all' : category}
           </span>
         </h1>
         <div className="float-right">
-          <select className="form-control" defaultValue="" ref={(input) => { this.sortSelect = input; }} name="sort" onChange={(e) => this.sortPosts()}>
-            <option value="" disabled="disabled">Filter...</option>
+          <select
+            className="form-control"
+            defaultValue=""
+            ref={input => {
+              this.sortSelect = input;
+            }}
+            name="sort"
+            onChange={e => this.sortPosts()}
+          >
+            <option value="" disabled="disabled">
+              Filter...
+            </option>
             <option value="-timestamp">Date: From Newest to Oldest</option>
             <option value="timestamp">Date: From Oldest to Newest</option>
             <option value="voteScore">Votes: From Low to High</option>
@@ -82,9 +96,7 @@ class Posts extends React.Component {
                     <small className="text-muted">
                       <div className="timestamp">
                         <i className="fa fa-calendar" aria-hidden="true" />
-                        {moment
-                          .unix(post.timestamp)
-                          .format('D MMM YYYY h:ma')}
+                        {moment.unix(post.timestamp).format('D MMM YYYY h:ma')}
                       </div>
                       <div className="author">
                         <i className="fa fa-user-circle-o" aria-hidden="true" />{' '}
@@ -139,6 +151,4 @@ class Posts extends React.Component {
 
 const mapStateToProps = ({ posts }) => ({ posts });
 const mapDispatchToProps = { fetchPostsByCategory, fetchPosts, doSortPosts };
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(Posts)
-);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Posts));
