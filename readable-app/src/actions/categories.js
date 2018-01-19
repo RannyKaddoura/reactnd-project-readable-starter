@@ -8,11 +8,11 @@ export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
 export function doFetchCategories() {
   return dispatch =>
     API.fetchAllCategories().then(categories =>
-      dispatch(fetchCategorie(categories))
+      dispatch(fetchCategories(categories))
     );
 }
 
-function fetchCategorie(categories) {
+function fetchCategories(categories) {
   return {
     type: FETCH_CATEGORIES,
     categories

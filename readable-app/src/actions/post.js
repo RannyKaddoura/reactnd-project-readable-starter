@@ -1,6 +1,6 @@
 import * as API from '../util/API';
-import * as uuid from 'uuid/v4'
-import moment from 'moment/moment'
+import * as uuid from 'uuid/v4';
+import moment from 'moment/moment';
 
 export const FETCH_POST = 'FETCH_POST';
 export const CREATE_POST = 'CREATE_POST';
@@ -30,8 +30,7 @@ export function doUpdatePost(post) {
  * delete post
  */
 export function doDeletePost(post) {
-  return dispatch =>
-    API.deletePost(post).then(() => dispatch(deletePost()));
+  return dispatch => API.deletePost(post).then(() => dispatch(deletePost()));
 }
 
 /**
@@ -59,9 +58,7 @@ export function doCreatePost({ body, author, title, category }) {
  */
 export function doVotePost(post, option) {
   return dispatch =>
-    API.votePost(post, option).then(post =>
-      dispatch(votePost(post))
-    );
+    API.votePost(post, option).then(post => dispatch(votePost(post)));
 }
 
 function fetchPost(post) {
@@ -71,29 +68,29 @@ function fetchPost(post) {
   };
 }
 
-function updatePost(post){
+function updatePost(post) {
   return {
     type: UPDATE_POST,
     post
-  }
+  };
 }
 
-function createPost(post){
+function createPost(post) {
   return {
     type: CREATE_POST,
     post
-  }
+  };
 }
 
-function votePost(post){
+function votePost(post) {
   return {
     type: VOTE_POST,
     post
-  }
+  };
 }
 
-function deletePost(){
+function deletePost() {
   return {
     type: DELETE_POST
-  }
+  };
 }

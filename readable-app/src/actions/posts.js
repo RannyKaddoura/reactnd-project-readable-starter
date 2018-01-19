@@ -22,7 +22,7 @@ export function fetchPostsByCategory(category) {
 /**
  * sort posts
  */
-export function doSortPosts(posts, sortBy){
+export function doSortPosts(posts, sortBy) {
   return dispatch => dispatch(sortPosts(posts, sortBy));
 }
 
@@ -33,10 +33,10 @@ function getPosts(posts) {
   };
 }
 
-function sortPosts(posts, sortBy){
+function sortPosts(posts, sortBy) {
   return {
     type: SORT_POSTS,
     posts,
     sortBy
-  }
+  };
 }

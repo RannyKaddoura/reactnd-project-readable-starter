@@ -49,21 +49,22 @@ class Posts extends React.Component {
 
     return (
       <div className="container">
-        <h1 className="display-4">
+        <h1 className="display-4" style={{display:'inline-block'}}>
           Posts{' '}
           <span className="lead">
             {category === undefined ? 'all' : category}
           </span>
         </h1>
-        <div className="float-right" style={{marginTop: -25}}>
-          <select defaultValue="" ref={(input) => { this.sortSelect = input; }} name="sort" onChange={(e) => this.sortPosts()}>
-            <option value="" disabled="disabled">Please select...</option>
+        <div className="float-right">
+          <select className="form-control" defaultValue="" ref={(input) => { this.sortSelect = input; }} name="sort" onChange={(e) => this.sortPosts()}>
+            <option value="" disabled="disabled">Filter...</option>
             <option value="-timestamp">Date: From Newest to Oldest</option>
             <option value="timestamp">Date: From Oldest to Newest</option>
             <option value="voteScore">Votes: From Low to High</option>
             <option value="-voteScore">Votes: From High to Low</option>
           </select>
         </div>
+
         <hr className="my-4" />
 
         <div className="row card-deck">
