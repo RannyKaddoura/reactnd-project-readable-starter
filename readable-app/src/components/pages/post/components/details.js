@@ -28,9 +28,9 @@ export default function PostDetails(props) {
 
             <hr className="my-3" />
 
-            {comments.length > 0 && (
+            {comments.length > 0 ? (
               <div className="comments">
-                <h4>Comments</h4>
+                <h4 className="mb-3">{comments.length} Comment{comments.length > 1 && 's'}</h4>
                 {comments.map(comment => (
                   <div key={comment.id}>
                     <Comment comment={comment} />
@@ -38,6 +38,8 @@ export default function PostDetails(props) {
                   </div>
                 ))}
               </div>
+            ):(
+              <h4 className="mb-3">No Comments so far... Your chance to be the first!</h4>
             )}
 
             <CommentForm />

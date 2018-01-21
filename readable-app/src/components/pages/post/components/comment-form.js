@@ -65,37 +65,40 @@ class CommentForm extends React.Component {
     return (
       <div>
         <form onSubmit={e => this.handleSubmit(e)}>
-          <div className="form-group">
-            <label htmlFor="name">Name:</label>
-            <input
-              defaultValue={comment.author}
-              ref={i => (this.nameInput = i)}
-              type="text"
-              className={
-                'form-control ' +
-                (!this.state.nameIsNotEmpty ? 'is-invalid' : '')
-              }
-              id="name"
-            />
-            <div className="invalid-feedback">Required field.</div>
-          </div>
-          <div className="form-group">
-            <label htmlFor="message">Message:</label>
-            <textarea
-              defaultValue={comment.body}
-              ref={t => (this.messageInput = t)}
-              className={
-                'form-control ' +
-                (!this.state.messageIsNotEmpty ? 'is-invalid' : '')
-              }
-              id="message"
-              rows="3"
-            />
-            <div className="invalid-feedback">Required field.</div>
-          </div>
-          <button type="submit" className="btn btn-primary">
-            Submit
-          </button>
+          <fieldset>
+            <legend>New comment:</legend>
+            <div className="form-group">
+              <label htmlFor="name">Name:</label>
+              <input
+                defaultValue={comment.author}
+                ref={i => (this.nameInput = i)}
+                type="text"
+                className={
+                  'form-control ' +
+                  (!this.state.nameIsNotEmpty ? 'is-invalid' : '')
+                }
+                id="name"
+              />
+              <div className="invalid-feedback">Required field.</div>
+            </div>
+            <div className="form-group">
+              <label htmlFor="message">Message:</label>
+              <textarea
+                defaultValue={comment.body}
+                ref={t => (this.messageInput = t)}
+                className={
+                  'form-control ' +
+                  (!this.state.messageIsNotEmpty ? 'is-invalid' : '')
+                }
+                id="message"
+                rows="3"
+              />
+              <div className="invalid-feedback">Required field.</div>
+            </div>
+            <button type="submit" className="btn btn-primary">
+              Submit
+            </button>
+          </fieldset>
         </form>
       </div>
     );
