@@ -1,12 +1,9 @@
 const api = 'http://localhost:3001';
 
-// Generate a unique token for storing your bookshelf data on the backend server.
-let token = 'fred';
-
 const headers = {
   'Content-Type': 'application/json',
   Accept: 'application/json',
-  Authorization: token
+  Authorization: process.env.READABLE_API_TOKEN
 };
 
 /**
