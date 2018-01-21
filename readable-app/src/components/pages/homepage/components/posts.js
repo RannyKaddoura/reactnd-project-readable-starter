@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import * as actions from '../../../../actions/posts';
+import * as postActions from '../../../../actions/posts';
 import Card from './card';
+import { doVotePost, doDeletePost } from '../../../../actions/post';
 
 class Posts extends React.Component {
   /**
@@ -42,6 +43,16 @@ class Posts extends React.Component {
     }
   };
 
+  deletePost(post) {
+    this.props.doDeletePost(post).then(() => {
+      this.doFetchCategories();
+    });
+  }
+
+  votePost(post, option) {
+    this.props.doVotePost(post, option);
+  }
+
   render() {
     const { posts } = this.props;
     const category = this.props.match.params.category;
@@ -77,7 +88,18 @@ class Posts extends React.Component {
         <hr className="my-4" />
 
         <div className="row card-deck">
-          {posts.map(post => <Card key={post.id} post={post} />)}
+          {posts.map(post => (
+            <Card
+              votePost={(post, option) => {
+                this.votePost(post, option);
+              }}
+              deletePost={post => {
+                this.deletePost(post);
+              }}
+              key={post.id}
+              post={post}
+            />
+          ))}
         </div>
       </div>
     );
@@ -85,4 +107,6 @@ class Posts extends React.Component {
 }
 
 const mapStateToProps = ({ posts }) => ({ posts });
-export default withRouter(connect(mapStateToProps, actions)(Posts));
+export default withRouter(
+  connect(mapStateToProps, { ...postActions, doDeletePost, doVotePost })(Posts)
+);

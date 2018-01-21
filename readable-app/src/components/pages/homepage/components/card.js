@@ -3,7 +3,7 @@ import moment from 'moment';
 import { Link } from 'react-router-dom';
 
 export default function Card(props) {
-  const { post } = props;
+  const { post, deletePost, votePost } = props;
   return (
     <div
       key={post.id}
@@ -31,11 +31,24 @@ export default function Card(props) {
 
           <hr className="my-2" />
           <div className="card-controls">
+            <Link to={`/${post.category}/${post.id}/edit`} className="btn btn-info btn-sm mr-1">
+              <i className="fa fa-edit" />
+            </Link>
+            <button type="button" onClick={() => deletePost(post)} className="btn btn-danger btn-sm mr-1">
+              <i className="fa fa-times" />
+            </button>
+            <button type="button" onClick={() => votePost(post, {option: 'upVote'})} className="btn btn-success btn-sm mr-1">
+              <i className="fa fa-thumbs-o-up" />
+            </button>
+            <button type="button" onClick={() => votePost(post, {option: 'downVote'})}  className="btn btn-warning btn-sm">
+              <i className="fa fa-thumbs-o-down" />
+            </button>
+
             <Link
               to={`/${post.category}/${post.id}`}
-              className="btn btn-info btn-sm float-right"
+              className="btn btn-outline-primary btn-sm float-right"
             >
-              Read more
+              <i className="fa fa-search"/>
             </Link>
           </div>
           <div className="clearfix" />
