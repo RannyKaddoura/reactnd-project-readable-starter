@@ -1,11 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import {
-  fetchPostsByCategory,
-  fetchPosts,
-  doSortPosts
-} from '../../../../actions/posts';
+import * as actions from '../../../../actions/posts';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 
@@ -150,5 +146,4 @@ class Posts extends React.Component {
 }
 
 const mapStateToProps = ({ posts }) => ({ posts });
-const mapDispatchToProps = { fetchPostsByCategory, fetchPosts, doSortPosts };
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Posts));
+export default withRouter(connect(mapStateToProps, actions)(Posts));
