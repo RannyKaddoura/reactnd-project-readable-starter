@@ -19,10 +19,16 @@ export default function Card(props) {
               <i className="fa fa-calendar" aria-hidden="true" />
               {moment.unix(post.timestamp).format('D MMM YYYY h:ma')}
             </div>
-            <div className="author">
-              <i className="fa fa-user-circle-o" aria-hidden="true" />{' '}
-              {post.author}
+            <div className="row">
+              <div className="author col-sm">
+                <i className="fa fa-user-circle-o" aria-hidden="true" />{' '}
+                {post.author}
+              </div>
+              <div className="col-sm text-right">
+                { post.commentCount } comment{post.commentCount > 1 && 's'}
+              </div>
             </div>
+
           </small>
 
           <hr className="my-2" />
