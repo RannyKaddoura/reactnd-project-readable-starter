@@ -1,12 +1,13 @@
 import * as API from '../util/API';
 import * as uuid from 'uuid/v4';
 import moment from 'moment/moment';
-
-export const FETCH_POST = 'FETCH_POST';
-export const CREATE_POST = 'CREATE_POST';
-export const UPDATE_POST = 'UPDATE_POST';
-export const VOTE_POST = 'VOTE_POST';
-export const DELETE_POST = 'DELETE_POST';
+import {
+  FETCH_POST,
+  UPDATE_POST,
+  DELETE_POST,
+  VOTE_POST,
+  CREATE_POST
+} from './types';
 
 /**
  * fetch comments on api

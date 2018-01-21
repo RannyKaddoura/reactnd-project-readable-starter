@@ -1,4 +1,10 @@
-import { CREATE_COMMENT, DELETE_COMMENT, FETCH_COMMENTS, UPDATE_COMMENT, VOTE_COMMENT } from '../actions/comments';
+import {
+  CREATE_COMMENT,
+  DELETE_COMMENT,
+  FETCH_COMMENTS,
+  UPDATE_COMMENT,
+  VOTE_COMMENT
+} from '../actions/types';
 import sortBy from 'sort-by';
 
 /**
@@ -13,9 +19,11 @@ export default function comments(state = [], action) {
       return newState.sort(sortBy('timestamp'));
     case UPDATE_COMMENT:
     case VOTE_COMMENT:
-      return state.map((comment) => {
-        return comment.id === action.comment.id ? action.comment : comment;
-      }).sort(sortBy('timestamp'));
+      return state
+        .map(comment => {
+          return comment.id === action.comment.id ? action.comment : comment;
+        })
+        .sort(sortBy('timestamp'));
     case DELETE_COMMENT:
       return state.filter(comment => {
         return comment.id !== action.comment.id;

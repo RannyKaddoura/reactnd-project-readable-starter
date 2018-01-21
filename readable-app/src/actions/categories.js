@@ -1,6 +1,5 @@
 import * as API from '../util/API';
-
-export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
+import {FETCH_CATEGORIES} from './types';
 
 /**
  * fetch categories on api

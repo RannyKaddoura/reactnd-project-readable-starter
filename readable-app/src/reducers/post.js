@@ -1,4 +1,9 @@
-import { CREATE_POST, FETCH_POST, UPDATE_POST, VOTE_POST } from '../actions/post'
+import {
+  CREATE_POST,
+  FETCH_POST,
+  UPDATE_POST,
+  VOTE_POST
+} from '../actions/types';
 
 /**
  * single post reducer

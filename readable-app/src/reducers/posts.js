@@ -1,4 +1,4 @@
-import { GET_POSTS, SORT_POSTS } from '../actions/posts'
+import { GET_POSTS, SORT_POSTS } from '../actions/types';
 import sortBy from 'sort-by';
 
 /**
@@ -9,7 +9,6 @@ export default function posts(state = [], action) {
     case GET_POSTS:
       return action.posts;
     case SORT_POSTS:
-
       return action.posts.concat().sort(sortBy(`${action.sortBy}`));
     default:
       return state;

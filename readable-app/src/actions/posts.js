@@ -1,7 +1,5 @@
 import * as API from '../util/API';
-
-export const GET_POSTS = 'GET_POSTS';
-export const SORT_POSTS = 'SORT_POSTS';
+import { GET_POSTS, SORT_POSTS } from './types'
 
 /**
  * fetch comments on api
