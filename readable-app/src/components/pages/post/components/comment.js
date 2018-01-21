@@ -77,5 +77,4 @@ class Comment extends Component {
     );
   }
 }
-const mapDispatchToProps = {doDeleteComment, doVoteComment};
-export default connect(() => ({}),mapDispatchToProps)(Comment);
+export default connect(null,{ doVoteComment, doDeleteComment })(Comment);
