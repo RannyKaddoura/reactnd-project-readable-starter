@@ -4,6 +4,7 @@ import PostForm from './components/post-form';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { doFetchPost, doCreatePost, doUpdatePost } from '../../../actions/post';
+import NotFound from './components/notfound';
 
 class EditPost extends React.Component {
   componentDidMount() {
@@ -32,9 +33,11 @@ class EditPost extends React.Component {
   render() {
     const { post } = this.props;
     return (
+
       <div>
         <Nav />
-        <div className="container">
+        {post.id && post ?
+          (<div className="container">
           <div className="row">
             <div className="col-sm">
               <PostForm
@@ -43,7 +46,7 @@ class EditPost extends React.Component {
               />
             </div>
           </div>
-        </div>
+          </div>) : (<NotFound />)}
       </div>
     );
   }

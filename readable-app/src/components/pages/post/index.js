@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { doFetchPost, doVotePost, doDeletePost } from '../../../actions/post';
 import { doFetchComments } from '../../../actions/comments';
+import NotFound from './components/notfound';
 
 class Post extends React.Component {
   componentDidMount() {
@@ -13,25 +14,42 @@ class Post extends React.Component {
     this.props.doFetchComments(postId);
   }
 
-  votePost(option){
+  votePost(option) {
     this.props.doVotePost(this.props.post, option);
   }
 
-  deletePost(){
-    this.props.doDeletePost(this.props.post).then(() => {this.props.history.push("/")});
+  deletePost() {
+    this.props.doDeletePost(this.props.post).then(() => {
+      this.props.history.push('/');
+    });
   }
 
   render() {
-    const {post, comments} = this.props;
+    const { post, comments } = this.props;
+    console.log(post)
     return (
       <div>
         <Nav />
-        <PostDetails post={post} comments={comments} votePost={(option) => this.votePost(option)} deletePost={() => this.deletePost()} />
+        {post.id && post ?
+          (<PostDetails
+            post={post}
+            comments={comments}
+            votePost={option => this.votePost(option)}
+            deletePost={() => this.deletePost()}
+          />)
+         :
+          (<NotFound/>)
+        }
       </div>
     );
   }
 }
 
 const mapStateToProps = ({ post, comments }) => ({ post, comments });
-const mapDispatchToProps = {doFetchPost, doFetchComments, doVotePost, doDeletePost};
+const mapDispatchToProps = {
+  doFetchPost,
+  doFetchComments,
+  doVotePost,
+  doDeletePost
+};
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Post));
