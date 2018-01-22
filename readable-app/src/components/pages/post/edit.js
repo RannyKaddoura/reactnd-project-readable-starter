@@ -32,11 +32,12 @@ class EditPost extends React.Component {
 
   render() {
     const { post } = this.props;
+    console.log(this.props)
     return (
 
       <div>
         <Nav />
-        {post.id && post ?
+        {post && !post.error  ?
           (<div className="container">
           <div className="row">
             <div className="col-sm">
