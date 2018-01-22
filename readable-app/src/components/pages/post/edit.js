@@ -32,7 +32,6 @@ class EditPost extends React.Component {
 
   render() {
     const { post } = this.props;
-    console.log(this.props)
     return (
 
       <div>
