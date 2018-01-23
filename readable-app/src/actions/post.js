@@ -6,8 +6,8 @@ import {
   UPDATE_POST,
   DELETE_POST,
   VOTE_POST,
-  CREATE_POST
-} from './types';
+  CREATE_POST, CLEAR_POST
+} from './types'
 
 /**
  * fetch comments on api
@@ -60,6 +60,13 @@ export function doCreatePost({ body, author, title, category }) {
 export function doVotePost(post, option) {
   return dispatch =>
     API.votePost(post, option).then(post => dispatch(votePost(post)));
+}
+
+export function doClearPost(){
+  return {
+    type: CLEAR_POST,
+    post: {}
+  }
 }
 
 function fetchPost(post) {

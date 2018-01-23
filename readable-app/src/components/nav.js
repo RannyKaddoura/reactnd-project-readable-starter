@@ -52,7 +52,7 @@ class Nav extends Component {
                 );
               })}
             </ul>
-            <Link to={'/new'} className="btn btn-secondary">
+            <Link to={'/new'} className="btn btn-secondary" >
               New Post
             </Link>
           </div>

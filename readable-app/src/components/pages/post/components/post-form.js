@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import { withRouter } from 'react-router-dom';
 import {
   renderInput,
   renderSelect,
@@ -88,4 +89,4 @@ const mapsStateToProps = ({ post, categories }) => ({
   categories
 });
 
-export default connect(mapsStateToProps)(PostForm);
+export default withRouter(connect(mapsStateToProps)(PostForm));

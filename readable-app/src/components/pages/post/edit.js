@@ -3,7 +3,7 @@ import Nav from '../../nav';
 import PostForm from './components/post-form';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { doFetchPost, doCreatePost, doUpdatePost } from '../../../actions/post';
+import { doFetchPost, doUpdatePost } from '../../../actions/post';
 import NotFound from './components/notfound';
 
 class EditPost extends React.Component {
@@ -14,20 +14,10 @@ class EditPost extends React.Component {
     }
   }
 
-  redirectToPost(post){
-    this.props.history.push(`/${post.category}/${post.id}`);
-  }
-
   handleSubmit = post => {
-    if (post.id) {
-      this.props.doUpdatePost(post).then((post) => {
-        this.redirectToPost(post);
-      });
-    } else {
-      this.props.doCreatePost(post).then((post) => {
-        this.redirectToPost(post);
-      });
-    }
+    this.props.doUpdatePost(post).then((post) => {
+      this.props.history.push(`/${post.category}/${post.id}`);
+    });
   };
 
   render() {
@@ -53,7 +43,7 @@ class EditPost extends React.Component {
 }
 
 const mapStateToProps = ({ post }) => ({ post });
-const mapDispatchToProps = { doFetchPost, doCreatePost, doUpdatePost };
+const mapDispatchToProps = { doFetchPost, doUpdatePost };
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(EditPost)
 );

@@ -26,7 +26,6 @@ class Post extends React.Component {
 
   render() {
     const { post, comments } = this.props;
-    console.log(post)
     return (
       <div>
         <Nav />

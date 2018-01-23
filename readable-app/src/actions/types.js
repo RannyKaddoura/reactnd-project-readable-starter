@@ -17,6 +17,7 @@ export const DELETE_COMMENT = 'DELETE_COMMENT';
  * Post(s) action types
  */
 export const FETCH_POST = 'FETCH_POST';
+export const CLEAR_POST = 'CLEAR_POST';
 export const CREATE_POST = 'CREATE_POST';
 export const UPDATE_POST = 'UPDATE_POST';
 export const VOTE_POST = 'VOTE_POST';
